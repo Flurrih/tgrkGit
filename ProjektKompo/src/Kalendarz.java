@@ -28,18 +28,18 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener
     int actualday=date1.getDay()-3;
     
     int actualyear=1900+date1.getYear();
-    
+    static Main main;
     ArrayList<JButton> buttons= new ArrayList<JButton>();
     int days[]={31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     String weekdays[] = {"Sun", "Mon", "Wto", "Sro", "Czw", "Fri", "Sat"}; 
     String months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     String actualmonth=months[date1.getMonth()];
     
-    public Kalendarz()
+    public Kalendarz(Main main)
     
-    {
-    	
-        super();
+    {	super();
+    	this.main=main;
+        
         p1 = new JPanel();
         month = new JComboBox();
         for(int i=0;i< months.length;i++)
@@ -78,7 +78,7 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener
     }
     public static void main(String args[])
     {
-    	Kalendarz frame = new Kalendarz();
+    	Kalendarz frame = new Kalendarz(main);
     }
 
     public void itemStateChanged(ItemEvent e)
@@ -115,6 +115,13 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener
             noOfDaysInMonth = 29;
         }
 
+       for(int i=0;i<=noOfDaysInMonth+1;i++)
+       {
+    	   
+    	   buttons.add(new JButton(String.valueOf(i+1)));
+    	   buttons.get(i).addActionListener(this);
+       }
+        
         for(int i=1, day=1;day<=noOfDaysInMonth;i++)
         {
             for(int j=0;j<7;j++)
@@ -123,9 +130,8 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener
                 {
                     if(j==date.getDay())
                     {
-                        JButton label = new JButton(String.valueOf(day));
-                        buttons.add(label);
-                        p2.add(label);
+                       
+                        p2.add(buttons.get(day-1));
                         day++;
                     }
                     else
@@ -136,9 +142,9 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener
                 }
                 else
                 {
-                	JButton label = new JButton(String.valueOf(day));
-                	buttons.add(label);
-                    p2.add(label);
+                	
+  
+                    p2.add(buttons.get(day-1));
                     day++;
                 }
                 if(day>noOfDaysInMonth)
@@ -165,13 +171,17 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener
 			year.setSelectedItem(actualyear);
 		}
 		
+		
 		for(int i=0;i<buttons.size();i++)
 		{
 			if(e.getSource()==buttons.get(i))
 			{
-				//nowy event
+				main.nr1.setSelectedIndex(1);
+				
 			}
+			
 		}
-		
+			
+			
 	}
 }

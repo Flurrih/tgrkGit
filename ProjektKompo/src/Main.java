@@ -7,18 +7,19 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 
-public class Main extends JApplet {
+public class Main extends JApplet{
 
 	JTabbedPane nr1;
-
+	AddEvent asd= new AddEvent();
 	
 	public void init()
 	{
 		
+		setSize(500,500);
 		nr1= new JTabbedPane();
-		//nr1.setSize(1000,1000);
-		nr1.add("Calendar",new Kalendarz());
-		nr1.add("Add Event", new AddEvent());
+	
+		nr1.add("Calendar",new Kalendarz(this));
+		nr1.add("Add Event", asd);
 		add(nr1);
 		
 	}

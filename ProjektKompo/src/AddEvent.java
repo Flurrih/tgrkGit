@@ -3,6 +3,7 @@ import java.awt.GridLayout;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
 import java.util.Date;
 
 import javax.swing.BoxLayout;
@@ -73,9 +74,11 @@ public class AddEvent extends JPanel implements ActionListener {
 		
 		if(e.getSource()==addtask)
 		{
-			//Date date = new Date(Integer.parseInt(day.getSelectedItem().toString()), Integer.parseInt(month.getSelectedItem().toString()) , Integer.parseInt(year.getSelectedItem().toString()));
-			//DBQuery.addEvent(name.getText(), description.getText(), place.getText(), new Date(Integer.parseInt(day.toString()), Integer.parseInt(month.toString()) , Integer.parseInt(year.toString())));
-			//System.out.println(.getSelectedItem().toString());
+			
+			//Date date = new Date("01-"+inputMonth+"-"+inputYear);
+			//Date date = new Date(, Integer.parseInt(month.getSelectedItem().toString()) , Integer.parseInt(year.getSelectedItem().toString()));
+			DBQuery.addEvent(name.getText(), description.getText(), place.getText(), chose.getDate());
+			//System.out.println(strDate);
 			//name.getText()  // pobieranie nazwy wydarzenia z textfieladu
 			// dodanie do bazy danych rekordu, nowego eventu
 			

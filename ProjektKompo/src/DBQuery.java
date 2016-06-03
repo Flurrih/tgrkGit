@@ -1,19 +1,27 @@
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.Date;
 
 public class DBQuery {
 
 	@SuppressWarnings("unused")
-	private DBConnection db;
+	private static DBConnection db;
 	
 	public DBQuery()
 	{
-		//new DBConnection(); chwilowo zakomentowane
+		new DBConnection();
 	}
 	
+	@SuppressWarnings("static-access")
 	public static void addEvent(String name, String desc, String place, Date date)
 	{
-		System.out.println(name + desc + place + date.toString());
+		System.out.println(name + desc + place + DateFormat.getDateInstance().format(date));
+		/*
+		try {
+			//db.stmt.executeUpdate("insert into events (name,description,place,date) values ('" + txt +"');");
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}*/
 	}
 }
 

@@ -73,8 +73,9 @@ public class AddEvent extends JPanel implements ActionListener {
 		
 		if(e.getSource()==addtask)
 		{
-			
-			//System.out.println(name.getText());
+			//Date date = new Date(Integer.parseInt(day.getSelectedItem().toString()), Integer.parseInt(month.getSelectedItem().toString()) , Integer.parseInt(year.getSelectedItem().toString()));
+			//DBQuery.addEvent(name.getText(), description.getText(), place.getText(), new Date(Integer.parseInt(day.toString()), Integer.parseInt(month.toString()) , Integer.parseInt(year.toString())));
+			//System.out.println(.getSelectedItem().toString());
 			//name.getText()  // pobieranie nazwy wydarzenia z textfieladu
 			// dodanie do bazy danych rekordu, nowego eventu
 			

@@ -75,7 +75,7 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener,Mou
         add(p1);
         add(p2);
         setVisible(true);
-
+        //addMouseListener(this);
         setSize(500,600);
  
         //setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -124,6 +124,7 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener,Mou
     	   
     	   buttons.add(new JButton(String.valueOf(i+1)));
     	   buttons.get(i).addActionListener(this);
+    	   buttons.get(i).addMouseListener(this);
        }
         
         for(int i=1, day=1;day<=noOfDaysInMonth;i++)
@@ -191,7 +192,11 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener,Mou
 			
 	}
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		if(arg0.getButton()==arg0.BUTTON3)
+		{
+			System.out.println("dziala :D");
+			doPop(arg0);
+		}
 		
 	}
 	public void mouseEntered(MouseEvent arg0) {
@@ -210,4 +215,9 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener,Mou
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private void doPop(MouseEvent e){
+        PopUpMenuCalendar menu = new PopUpMenuCalendar();
+        menu.show(e.getComponent(), e.getX(), e.getY());
+    }
 }

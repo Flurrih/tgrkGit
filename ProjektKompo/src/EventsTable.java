@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -19,7 +20,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 
 
-public class EventsTable extends JPanel implements ActionListener,MouseListener{
+public class EventsTable extends JPanel implements MouseListener{
 	
 	JTable table;
 	JButton refreshButton;
@@ -34,7 +35,7 @@ public class EventsTable extends JPanel implements ActionListener,MouseListener{
 	       };
 
 	EditTable e1;
-	DefaultTableModel model = new DefaultTableModel(data, columnNames);
+	DefaultTableModel model = new DefaultTableModel(DBQuery.getAllEvents(), columnNames);
 
 	
 	static Object[][] data= {
@@ -51,38 +52,26 @@ public class EventsTable extends JPanel implements ActionListener,MouseListener{
 				super();
 				this.e1=edit;
 				table = new JTable(model);
-
 				js=new JScrollPane(table);
-				js.setSize(new Dimension(550,400));
 				add(js);
 				
-				
 				table.addMouseListener(this);
-				
-				
-				refreshButton= new JButton("Refresh");
-				refreshButton.addActionListener(this);
-				
-				add(refreshButton);
 	}
-
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == refreshButton) 
-		{
-			updateData();
-		}
-	}
-
+	
 	public void updateData() {
-	    
+		js.removeAll();
+		model = new DefaultTableModel(DBQuery.getAllEvents(), columnNames);
+		table = new JTable(model);
+
+		js=new JScrollPane(table);
+		add(js);
 	}
 
 	public void addNewEvent(Event event) {
 
 		TableModel d;
-		System.out.println("dd");
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		model.addRow(new Object[]{event.name,event.description,event.place,event.date.toString()});
+		model.addRow(new Object[]{event.name,event.description,event.place,DateFormat.getDateInstance().format(event.date).toString()});
 	}
 
 	public void mouseClicked(MouseEvent arg0) {

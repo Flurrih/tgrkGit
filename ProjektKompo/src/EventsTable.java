@@ -1,22 +1,23 @@
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.List;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
 
 public class EventsTable extends JTable{
 	
-	//String [][]rows;
-	//String []columns= new String[5];
 	
-	
+	//static String []columns= {"Name" , "Desc", "Place" , "Date"};
+
+	//static Object[][] data = DBQuery.getAllEvents();
 	
 	EventsTable()
 	{
-	//super();  tutaj w argumencie daj to co Ci wysallem
-		
-		
+				//super(data,columns);
 		
 	}
 

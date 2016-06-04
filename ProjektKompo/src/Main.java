@@ -20,6 +20,7 @@ public class Main extends JApplet{
 	
 		nr1.add("Calendar",new Kalendarz(this,asd));
 		nr1.add("Add Event", asd);
+		//nr1.add("Events", new EventsTable());
 		nr1.add("About", new About());
 		add(nr1);
 		

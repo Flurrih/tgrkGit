@@ -34,6 +34,7 @@ public class AddEvent extends JPanel implements ActionListener {
 	JComboBox year;
 	JDateChooser chose;
 	JButton addtask;
+	
 	AddEvent(){
 		
 			

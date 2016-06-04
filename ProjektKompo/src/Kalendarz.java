@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,7 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class Kalendarz extends JPanel implements ItemListener,ActionListener
+public class Kalendarz extends JPanel implements ItemListener,ActionListener,MouseListener
 {
  
 	
@@ -29,16 +31,18 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener
     
     int actualyear=1900+date1.getYear();
     static Main main;
+    static AddEvent evt;
     ArrayList<JButton> buttons= new ArrayList<JButton>();
     int days[]={31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     String weekdays[] = {"Sun", "Mon", "Wto", "Sro", "Czw", "Fri", "Sat"}; 
     String months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     String actualmonth=months[date1.getMonth()];
     
-    public Kalendarz(Main main)
+    public Kalendarz(Main main,AddEvent evt)
     
     {	super();
     	this.main=main;
+        this.evt=evt;
         
         p1 = new JPanel();
         month = new JComboBox();
@@ -78,7 +82,7 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener
     }
     public static void main(String args[])
     {
-    	Kalendarz frame = new Kalendarz(main);
+    	Kalendarz frame = new Kalendarz(main,evt);
     }
 
     public void itemStateChanged(ItemEvent e)
@@ -177,11 +181,33 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener
 			if(e.getSource()==buttons.get(i))
 			{
 				main.nr1.setSelectedIndex(1);
-				
+				//System.out.println(i);
+				Date tmp= new Date(year.getSelectedIndex()+80,month.getSelectedIndex(),i+1);
+				evt.chose.setDate(tmp);
 			}
 			
 		}
 			
 			
+	}
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

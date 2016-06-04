@@ -1,27 +1,57 @@
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class DBQuery {
 
 	@SuppressWarnings("unused")
 	private static DBConnection db;
 	
+	@SuppressWarnings("static-access")
 	public DBQuery()
 	{
 		new DBConnection();
+		
 	}
 	
 	@SuppressWarnings("static-access")
-	public static void addEvent(String name, String desc, String place, Date date)
+	public static void addEvent(Event ev)
 	{
-		System.out.println(name + desc + place + DateFormat.getDateInstance().format(date));
-		/*
 		try {
-			//db.stmt.executeUpdate("insert into events (name,description,place,date) values ('" + txt +"');");
+			db.connectToDatabase();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			db.stmt.executeUpdate("insert into events (name,description,place,date) values ('" + ev.name +"','" + ev.description + "','" + ev.place + "','" + DateFormat.getDateInstance().format(ev.date) +"');");
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
-		}*/
+		}
+		
+		getAllEvents(); // to delete
+	}
+	
+	@SuppressWarnings("static-access")
+	public static List<Event> getAllEvents()
+	{
+
+		try {
+		    db.rs = db.stmt.executeQuery("SELECT * FROM events");
+		    while (db.rs.next()) {
+		        String n = db.rs.getString("name");
+		        String d = db.rs.getString("description");
+		        String p = db.rs.getString("place");
+		        Date dat = db.rs.getDate("date");
+		        
+		        Event event = new Event(n,d,p,dat);
+		        System.out.println(event.toString());
+		    }
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
+		
+		return null;
 	}
 }
 

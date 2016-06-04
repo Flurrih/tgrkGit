@@ -10,17 +10,7 @@ public class DBConnection {
 	public static Statement stmt;
 	public static ResultSet rs;
 	
-	public DBConnection()
-	{
-		try 
-		{
-			connectToDatabase();
-		} 
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
-	}
+
 	
 	public static void connectToDatabase() throws SQLException {
 
@@ -28,8 +18,6 @@ public class DBConnection {
 
 
 	    stmt = con.createStatement();
-	    
-	    System.out.println("Connected to database succesfully");
 	    
 	}
 	

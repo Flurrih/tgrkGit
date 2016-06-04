@@ -11,13 +11,23 @@ import javax.swing.JTable;
 public class EventsTable extends JTable{
 	
 	
-	//static String []columns= {"Name" , "Desc", "Place" , "Date"};
+	static Object[] columnNames = {"Zdarzenie",
+	        "Opis",
+	        "Miejsce",
+	        "Data",
+	       };
 
-	//static Object[][] data = DBQuery.getAllEvents();
+	static Object[][] data= {
+		    {"Spotkanie", "O prace",
+		        "Lodz", "25 maja"},
+		       {"Spotkanie", "O prace",
+			        "Lodz", "25 maja"},
+		   };
+	
 	
 	EventsTable()
 	{
-				//super(data,columns);
+				super(data,columnNames);
 		
 	}
 

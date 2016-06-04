@@ -29,7 +29,6 @@ public class DBQuery {
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}
-		
 		getAllEvents(); // to delete
 	}
 	
@@ -37,6 +36,7 @@ public class DBQuery {
 	public static Object[][] getAllEvents()
 	{
 
+		System.out.println("dsd");
 		ArrayList<Event> events = new ArrayList<Event>();
 		try {
 			db.connectToDatabase();
@@ -60,24 +60,21 @@ public class DBQuery {
 			sqlException.printStackTrace();
 		}
 		
-		Object[][] ret = new Object[events.size()][][];
+		Object[][] ret = new Object[events.size()][4];
 
-		ret[0][0] = "Fsdsfsd";
-		//ret[0][0] = events.get(0).name;
 		
-		System.out.println((String)ret[0][0]);
-	/*	for(int i = 0; i < events.size(); i++)
+		for(int i = 0; i < events.size(); i++)
 		{
+		
 			ret[i][0] = events.get(i).name;
 			ret[i][1] = events.get(i).description;
 			ret[i][2] = events.get(i).place;
-			ret[i][3] = events.get(i).date;
+			ret[i][3] = events.get(i).date.toString();
 			
-			System.out.println(ret[i][0]);
 		}
-*/
+
 		
-		return null;
+		return ret;
 	}
 }
 

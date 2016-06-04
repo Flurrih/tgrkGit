@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.util.Date;
 
 import javax.swing.BoxLayout;
+import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -34,11 +35,12 @@ public class AddEvent extends JPanel implements ActionListener {
 	JComboBox year;
 	JDateChooser chose;
 	JButton addtask;
-	
-	AddEvent(){
+	JApplet app;
+	EventsTable eventsTable;
+	AddEvent(EventsTable eventsTable){
 		
 			
-		 	
+		 	this.eventsTable = eventsTable;
 			addtask=new JButton("Add Task");
 			
 			//Date date = new Date("01-"+"January"+"-"+1990);
@@ -75,14 +77,14 @@ public class AddEvent extends JPanel implements ActionListener {
 		
 		if(e.getSource()==addtask)
 		{
-			
+			Event event = new Event(name.getText(), description.getText(), place.getText(), chose.getDate());
 			//Date date = new Date("01-"+inputMonth+"-"+inputYear);
 			//Date date = new Date(, Integer.parseInt(month.getSelectedItem().toString()) , Integer.parseInt(year.getSelectedItem().toString()));
-			//DBQuery.addEvent(new Event(name.getText(), description.getText(), place.getText(), chose.getDate()));
+			DBQuery.addEvent(event);
 			//System.out.println(strDate);
 			//name.getText()  // pobieranie nazwy wydarzenia z textfieladu
 			// dodanie do bazy danych rekordu, nowego eventu
-			
+			eventsTable.addNewEvent(event);
 		}
 	}
 	}

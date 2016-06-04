@@ -24,6 +24,7 @@ public class EventsTable extends JPanel implements MouseListener{
 	
 	JTable table;
 	JButton refreshButton;
+	int clickedRecord = -1;
 	static JButton a1=new JButton("Edit");
 	static JButton a2=new JButton("Edit");
 	
@@ -78,10 +79,18 @@ public class EventsTable extends JPanel implements MouseListener{
 		if(arg0.getButton()==arg0.BUTTON3)
 		{
 			
-				//System.out.println(table.rowAtPoint(arg0.getPoint()));
+				clickedRecord = table.rowAtPoint(arg0.getPoint());
+				
 				doPop(arg0);
-			}
+				
+				Object[] obj = {model.getValueAt(clickedRecord, 0), model.getValueAt(clickedRecord, 1) , 
+						model.getValueAt(clickedRecord, 2) , model.getValueAt(clickedRecord, 3) };
+			
+				if(clickedRecord != -1)
+					e1.invokeEditTable(obj);
+				
 		}
+	}
 		
 	
 
@@ -107,7 +116,15 @@ public class EventsTable extends JPanel implements MouseListener{
 	
 	private void doPop(MouseEvent e){
         PopUpEdit menu = new PopUpEdit(this);
-        menu.show(e.getComponent(), e.getX(), e.getY());
+       
+        menu.show(e.getComponent(), e.getX(), e.getY()); 
     }
 
+	public Object[] getSelectedEvent()
+	{
+		System.out.println(model.getValueAt(clickedRecord, 0));
+		Object[] obj = {model.getValueAt(clickedRecord, 0), model.getValueAt(clickedRecord, 0) , 
+				model.getValueAt(clickedRecord, 0) , model.getValueAt(clickedRecord, 0) };
+		return obj;
+	}
 }

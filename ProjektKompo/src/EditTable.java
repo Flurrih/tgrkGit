@@ -5,6 +5,8 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.BoxLayout;
@@ -83,4 +85,24 @@ public class EditTable extends JFrame implements ActionListener {
 			//System.out.println(table.rowAtPoint(arg0.getPoint())); ktory wiersz
 		}
 	}
+	public void invokeEditTable(Object[] obj)
+	{
+		if(obj!= null)
+		{
+			name.setText((String) obj[0]);
+			description.setText((String) obj[1]);
+			place.setText((String) obj[2]);
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			try {
+				chose.setDate(df.parse((String) obj[3]));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+
 	}
+	
+}
+
+	

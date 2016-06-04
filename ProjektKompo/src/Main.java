@@ -11,7 +11,7 @@ public class Main extends JApplet{
 
 	public JTabbedPane nr1;
 	
-	public EventsTable nr2= new EventsTable();
+	public EventsTable nr2= new EventsTable(new EditTable());
 	public AddEvent asd= new AddEvent(nr2);
 	
 	public void init()
@@ -22,7 +22,7 @@ public class Main extends JApplet{
 	
 		nr1.add("Calendar",new Kalendarz(this,asd));
 		nr1.add("Add Event", asd);
-		nr1.add("Events", new EventsTable());
+		nr1.add("Events", nr2);
 		nr1.add("About", new About());
 		add(nr1);
 		

@@ -29,7 +29,6 @@ public class DBQuery {
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}
-		getAllEvents(); // to delete
 	}
 	
 	@SuppressWarnings("static-access")
@@ -75,6 +74,22 @@ public class DBQuery {
 
 		
 		return ret;
+	}
+	
+	@SuppressWarnings("static-access")
+	public static void editEvent(Object[] obj)
+	{
+		try {
+			db.connectToDatabase();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			db.stmt.executeUpdate("update events set description = obj[1], place = obj[2], date = obj[3]"
+					+ "where name = obj[0]");
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
 	}
 }
 

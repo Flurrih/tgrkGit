@@ -27,7 +27,7 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener,Mou
     JComboBox year;
     JButton goBack;
     Date date1= new Date();
-    int actualday=date1.getDay()-3;
+    int actualday=date1.getDay()+1;
     
     int actualyear=1900+date1.getYear();
     static Main main;
@@ -159,7 +159,7 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener,Mou
             }
         }
         
-      //System.out.println(actualday);
+      System.out.println(actualday);
         
         if(month.getSelectedIndex()==date1.getMonth() && year.getSelectedIndex()==(date1.getYear()-80))buttons.get(actualday).setBackground(Color.RED);
         

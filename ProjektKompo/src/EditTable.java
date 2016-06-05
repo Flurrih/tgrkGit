@@ -40,6 +40,9 @@ public class EditTable extends JFrame implements ActionListener {
 	JButton edittask;
 	JApplet app;
 	EventsTable eventsTable;
+	
+	Object[] selectedEvent;
+	
 	EditTable(){
 		
 			super();
@@ -81,26 +84,33 @@ public class EditTable extends JFrame implements ActionListener {
 		
 		if(e.getSource()==edittask)
 		{
+			selectedEvent[0] = name.getText();
+			selectedEvent[1] = description.getText();
+			selectedEvent[2] = place.getText();
+			selectedEvent[3] = DateFormat.getDateInstance().format(chose.getDate()).toString();
+			
 				//uaktualnienie tego rekordu
-			//System.out.println(table.rowAtPoint(arg0.getPoint())); ktory wiersz
+			System.out.println(selectedEvent[0] + " " + selectedEvent[1]);
 		}
 	}
 	public void invokeEditTable(Object[] obj)
 	{
 		if(obj!= null)
 		{
-			name.setText((String) obj[0]);
-			description.setText((String) obj[1]);
-			place.setText((String) obj[2]);
+			selectedEvent = obj;
+			name.setText((String) selectedEvent[0]);
+			description.setText((String) selectedEvent[1]);
+			place.setText((String) selectedEvent[2]);
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			try {
-				chose.setDate(df.parse((String) obj[3]));
+				chose.setDate(df.parse((String) selectedEvent[3]));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
 		}
 
+		
 	}
 	
 }

@@ -1,5 +1,7 @@
 import java.applet.Applet;
 import java.awt.event.ActionListener;
+import java.util.Date;
+
 
 import javax.swing.JApplet;
 import javax.swing.JFrame;
@@ -16,7 +18,7 @@ public class Main extends JApplet{
 	
 	public void init()
 	{
-		
+	
 		setSize(500,500);
 		nr1= new JTabbedPane();
 	

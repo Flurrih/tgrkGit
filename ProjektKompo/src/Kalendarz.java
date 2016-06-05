@@ -27,7 +27,7 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener,Mou
     JComboBox year;
     JButton goBack;
     Date date1= new Date();
-    int actualday=date1.getDay()+1;
+    int actualday=date1.getDate()-1;
     
     int actualyear=1900+date1.getYear();
     static Main main;
@@ -119,18 +119,35 @@ public class Kalendarz extends JPanel implements ItemListener,ActionListener,Mou
             noOfDaysInMonth = 29;
         }
 
+        ArrayList<Event> tmp2=DBQuery.getAllEventsList();
        for(int i=0;i<=noOfDaysInMonth+1;i++)
        {
     	   
     	   buttons.add(new JButton(String.valueOf(i+1)));
     	   buttons.get(i).addActionListener(this);
     	   buttons.get(i).addMouseListener(this);
+    	   Date tmp= new Date(year.getSelectedIndex()+80,month.getSelectedIndex(),i+1);
+    	   
+    	   	for(int j=0;j<tmp2.size();j++)
+    	   	{
+    	   		System.out.println("lista");
+    	   		System.out.println(tmp2.get(j).date.getDate());
+    	   		System.out.println("tmp");
+    	   		System.out.println(tmp.getDate());
+    	   		if(tmp2.get(j).date.compareTo(tmp)==0)
+    	   			{
+    	   			System.out.println("ZMIANA KOLORU !!!");
+    	   			buttons.get(i).setBackground(Color.blue);}
+    	   	}
+    	  
        }
         
         for(int i=1, day=1;day<=noOfDaysInMonth;i++)
         {
             for(int j=0;j<7;j++)
-            {
+            { 
+            	
+            	
                 if(day==1)
                 {
                     if(j==date.getDay())

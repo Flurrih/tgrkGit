@@ -37,14 +37,6 @@ public class EventsTable extends JPanel implements MouseListener{
 
 	EditTable e1;
 	DefaultTableModel model = new DefaultTableModel(DBQuery.getAllEvents(), columnNames);
-
-	
-	static Object[][] data= {
-		    {"Spotkanie", "O prace",
-		        "Lodz", "25 maja",},
-		       {"Spotkanie", "O prace",
-			        "Lodz", "25 maja",},
-		   };
 	
 
 	
@@ -69,8 +61,6 @@ public class EventsTable extends JPanel implements MouseListener{
 	}
 
 	public void addNewEvent(Event event) {
-
-		TableModel d;
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		model.addRow(new Object[]{event.name,event.description,event.place,DateFormat.getDateInstance().format(event.date).toString()});
 	}

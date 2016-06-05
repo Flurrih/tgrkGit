@@ -13,11 +13,15 @@ public class PopUpEdit extends JPopupMenu implements ActionListener,ItemListener
 		EventsTable asd;
 	 JMenuItem addtask;
 	 JMenuItem showtasks;
+	 JMenuItem deletetask;
 	    public PopUpEdit(EventsTable asd){
 	    	this.asd=asd;
 	       	showtasks=new JMenuItem("Edit task");
+	       	deletetask=new JMenuItem("Delete task");
 	       	add(showtasks);
+	       	add(deletetask);
 	       	showtasks.addActionListener(this);
+	       	deletetask.addActionListener(this);
 	       	
 	    }
 		public void actionPerformed(ActionEvent e) {
@@ -25,14 +29,21 @@ public class PopUpEdit extends JPopupMenu implements ActionListener,ItemListener
 			{
 				//System.out.println("Zlapalo");
 			asd.e1.setVisible(true);
-		}
+			}
+			
+			if(e.getSource()==deletetask)
+			{
+				DBQuery.deleteTask(asd.getSelectedEvent());
+				asd.updateData();
+			}
 	
-}
+		}
 		public void itemStateChanged(ItemEvent arg0) {
 			if(arg0.getItemSelectable()==showtasks)
 			{
 				System.out.println("Zlapalo");
 				asd.e1.setVisible(true);
+				
 			}
 			
 		}

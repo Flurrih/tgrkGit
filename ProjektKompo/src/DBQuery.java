@@ -93,6 +93,20 @@ public class DBQuery {
 		}
 	}
 	
+	public static void deleteTask(Object[] obj)
+	{
+		try {
+			db.connectToDatabase();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			db.stmt.executeUpdate("DELETE FROM events WHERE name = '" + obj[0] + "'");
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
+	}
+	
 	public static ArrayList<Event> getAllEventsList()
 	{
 

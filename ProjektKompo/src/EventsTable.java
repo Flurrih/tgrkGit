@@ -55,7 +55,7 @@ public class EventsTable extends JPanel implements MouseListener{
 				table = new JTable(model);
 				js=new JScrollPane(table);
 				add(js);
-				
+				e1.eventsTable = this;
 				table.addMouseListener(this);
 	}
 	

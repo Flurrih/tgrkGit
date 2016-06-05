@@ -92,6 +92,8 @@ public class EditTable extends JFrame implements ActionListener {
 				//uaktualnienie tego rekordu
 			System.out.println(selectedEvent[0] + " " + selectedEvent[1]);
 			DBQuery.editEvent(selectedEvent);
+			eventsTable.updateData();
+			//this.setVisible(false);
 		}
 	}
 	public void invokeEditTable(Object[] obj)

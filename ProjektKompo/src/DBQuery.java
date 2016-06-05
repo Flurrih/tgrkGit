@@ -85,11 +85,44 @@ public class DBQuery {
 			e.printStackTrace();
 		}
 		try {
-			db.stmt.executeUpdate("update events set description = obj[1], place = obj[2], date = obj[3]"
-					+ "where name = obj[0]");
+			System.out.println("dsd");
+			db.stmt.executeUpdate("update events set description = '" + obj[1] + "', place = '" + obj[2] + "', date = '" + obj[3]
+					+ "' where name = '" + obj[0] + "';");
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}
+	}
+	
+	public static ArrayList<Event> getAllEventsList()
+	{
+
+		System.out.println("dsd");
+		ArrayList<Event> events = new ArrayList<Event>();
+		try {
+			db.connectToDatabase();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+		    db.rs = db.stmt.executeQuery("SELECT * FROM events");
+		    while (db.rs.next()) {
+		        String n = db.rs.getString("name");
+		        String d = db.rs.getString("description");
+		        String p = db.rs.getString("place");
+		        Date dat = db.rs.getDate("date");
+		        
+		        Event event = new Event(n,d,p,dat);
+		        events.add(event);
+		    }
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
+		
+	
+
+		
+		return events;
 	}
 }
 

@@ -14,7 +14,7 @@ public class DBConnection {
 	
 	public static void connectToDatabase() throws SQLException {
 
-	    con = DriverManager.getConnection("jdbc:mysql://localhost/KompoDB","root", "haslo123");
+	    con = DriverManager.getConnection("jdbc:mysql://localhost/KompoDB?useSSL=false","root", "haslo123");
 
 
 	    stmt = con.createStatement();

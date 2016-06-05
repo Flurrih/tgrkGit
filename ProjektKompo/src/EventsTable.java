@@ -63,7 +63,7 @@ public class EventsTable extends JPanel implements MouseListener{
 		js.removeAll();
 		model = new DefaultTableModel(DBQuery.getAllEvents(), columnNames);
 		table = new JTable(model);
-
+		table.addMouseListener(this);
 		js=new JScrollPane(table);
 		add(js);
 	}
@@ -78,11 +78,9 @@ public class EventsTable extends JPanel implements MouseListener{
 	public void mouseClicked(MouseEvent arg0) {
 		if(arg0.getButton()==arg0.BUTTON3)
 		{
-			
 				clickedRecord = table.rowAtPoint(arg0.getPoint());
-				
-				doPop(arg0);
-				
+				PopUpEdit menu = new PopUpEdit(this);
+		        menu.show(arg0.getComponent(), arg0.getX(), arg0.getY()); 
 				Object[] obj = {model.getValueAt(clickedRecord, 0), model.getValueAt(clickedRecord, 1) , 
 						model.getValueAt(clickedRecord, 2) , model.getValueAt(clickedRecord, 3) };
 			
@@ -114,11 +112,6 @@ public class EventsTable extends JPanel implements MouseListener{
 		
 	}
 	
-	private void doPop(MouseEvent e){
-        PopUpEdit menu = new PopUpEdit(this);
-       
-        menu.show(e.getComponent(), e.getX(), e.getY()); 
-    }
 
 	public Object[] getSelectedEvent()
 	{

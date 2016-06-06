@@ -23,10 +23,7 @@ import javax.swing.table.TableModel;
 public class EventsTable extends JPanel implements MouseListener{
 	
 	JTable table;
-	JButton refreshButton;
 	int clickedRecord = -1;
-	static JButton a1=new JButton("Edit");
-	static JButton a2=new JButton("Edit");
 	
 	JScrollPane js;
 	static Object[] columnNames = {"Zdarzenie",
